@@ -1,15 +1,9 @@
-# services/answer_service.py
-#
-# WHAT THIS FILE DOES:
-# This is the "Generation" part of RAG (Retrieval-Augmented Generation).
-# It takes the chunks of text that embedding_service.py found, hands them
-# to Google's Gemini model as context, and asks Gemini to write a real,
-# human-readable answer using only that context.
+
 
 from google import genai
 from config import GEMINI_API_KEY, GEMINI_MODEL_NAME
 
-# Create the Gemini client once, using the API key from config.py
+
 client = genai.Client(api_key=GEMINI_API_KEY)
 
 
