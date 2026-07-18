@@ -1,13 +1,4 @@
-# agent.py
-#
-# WHAT THIS FILE DOES:
-# This is the main "agent" that ties all three services together:
-#   1. document_service   -> splits text into chunks
-#   2. embedding_service   -> stores/searches chunks using AI embeddings + FAISS
-#   3. answer_service       -> asks Gemini to write the final answer
-#
-# routes.py calls the two functions below; it never talks to the services directly.
-# This keeps the "thinking" logic separate from the "web server" logic.
+
 
 from services.document_service import chunk_text, extract_text_from_pdf
 from services.embedding_service import build_index, search_index, has_document_loaded
