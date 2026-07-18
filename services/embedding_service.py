@@ -1,21 +1,13 @@
-# services/embedding_service.py
-#
-# WHAT THIS FILE DOES:
-# This is the "Retrieval" part of RAG (Retrieval-Augmented Generation).
-# It turns text chunks into number vectors ("embeddings") using an AI model,
-# stores them in a FAISS vector database, and can search that database to
-# find which chunks are most relevant to a question.
 
 import faiss
 import numpy as np
 from sentence_transformers import SentenceTransformer
 from config import EMBEDDING_MODEL_NAME, EMBEDDING_DIMENSIONS, TOP_K_CHUNKS, MIN_SIMILARITY_SCORE
 
-# Loads the embedding model once, when this file is first imported
-# (loading it inside every function call would be slow and wasteful)
+
 embedding_model = SentenceTransformer(EMBEDDING_MODEL_NAME)
 
-# These hold our "database" in memory. They get filled in by build_index().
+
 all_chunks = []
 faiss_index = None
 
@@ -29,14 +21,14 @@ def build_index(chunks):
 
     all_chunks = chunks
 
-    # turn each text chunk into a list of numbers (a vector)
+ 
     vectors = embedding_model.encode(chunks)
     vectors = np.array(vectors).astype("float32")
 
-    # normalizing lets us use "inner product" search to mean "cosine similarity"
+
     faiss.normalize_L2(vectors)
 
-    # IndexFlatIP = a simple FAISS index that compares vectors by inner product
+  
     faiss_index = faiss.IndexFlatIP(EMBEDDING_DIMENSIONS)
     faiss_index.add(vectors)
 
