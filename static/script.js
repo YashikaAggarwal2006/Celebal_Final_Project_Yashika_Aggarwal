@@ -1,6 +1,3 @@
-// script.js
-// This is the "glue" between what the user does in the browser
-// and the Flask backend (app.py).
 
 const uploadBtn = document.getElementById("uploadBtn");
 const notesInput = document.getElementById("notesInput");
@@ -15,7 +12,7 @@ const chatWindow = document.getElementById("chatWindow");
 
 let documentUploaded = false;
 
-// ---- Step 1a: Upload / save pasted notes ----
+// Step 1a: Upload / save pasted notes 
 uploadBtn.addEventListener("click", async () => {
   const text = notesInput.value.trim();
 
@@ -40,7 +37,7 @@ uploadBtn.addEventListener("click", async () => {
   }
 });
 
-// ---- Step 1b: Upload a PDF file instead ----
+//  Step 1b: Upload a PDF file instead 
 uploadPdfBtn.addEventListener("click", async () => {
   const file = pdfInput.files[0];
 
@@ -68,7 +65,7 @@ uploadPdfBtn.addEventListener("click", async () => {
   }
 });
 
-// ---- Step 2: Ask a question ----
+// Step 2: Ask a question
 askForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
@@ -98,7 +95,7 @@ askForm.addEventListener("submit", async (event) => {
   questionInput.value = "";
 });
 
-// ---- Helper: add a question/answer pair to the chat window ----
+// Helper: add a question/answer pair to the chat window
 function addChatEntry(question, answer, source) {
   // remove the "empty state" message the first time a question is asked
   const emptyMsg = chatWindow.querySelector(".chat-empty");
