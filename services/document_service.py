@@ -1,9 +1,3 @@
-# services/document_service.py
-#
-# WHAT THIS FILE DOES:
-# Takes the raw text a student pastes in (or uploads as a PDF), and breaks
-# it into small, bite-sized "chunks". Small chunks are easier to search
-# accurately than searching one giant block of text all at once.
 
 from config import CHUNK_SIZE
 from pypdf import PdfReader
