@@ -1,0 +1,255 @@
+/* ---------- Design tokens ---------- */
+:root {
+  --board-green: #223B31;
+  --board-green-light: #2C4B3E;
+  --chalk-white: #F3F1E7;
+  --chalk-yellow: #E8C468;
+  --chalk-coral: #E38377;
+  --chalk-blue: #82B7C4;
+  --chalk-dim: #A9BDB2;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background-color: var(--board-green);
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.02) 0, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.02) 0, transparent 45%);
+  color: var(--chalk-white);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px 20px;
+}
+
+/* ---------- Header ---------- */
+.header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.chalk-title {
+  font-family: 'Kalam', cursive;
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--chalk-white);
+  position: relative;
+  display: inline-block;
+  letter-spacing: 1px;
+}
+
+.chalk-underline {
+  display: block;
+  width: 100%;
+  height: 10px;
+  margin-top: -4px;
+}
+
+.chalk-underline::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 4px;
+  background-image: repeating-linear-gradient(90deg, var(--chalk-yellow) 0 10px, transparent 10px 16px);
+  border-radius: 2px;
+}
+
+.subtitle {
+  color: var(--chalk-dim);
+  font-size: 0.95rem;
+  margin-top: 10px;
+}
+
+/* ---------- Board layout ---------- */
+.board {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  width: 100%;
+  max-width: 1000px;
+}
+
+@media (max-width: 800px) {
+  .board { grid-template-columns: 1fr; }
+}
+
+.panel {
+  background: var(--board-green-light);
+  border: 1px dashed rgba(243, 241, 231, 0.25);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-title {
+  font-family: 'Kalam', cursive;
+  font-size: 1.3rem;
+  color: var(--chalk-yellow);
+  margin: 0 0 14px;
+}
+
+/* ---------- Notes panel ---------- */
+#notesInput {
+  flex: 1;
+  min-height: 220px;
+  resize: vertical;
+  background: rgba(243, 241, 231, 0.05);
+  border: 1px solid rgba(243, 241, 231, 0.2);
+  border-radius: 6px;
+  color: var(--chalk-white);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+#notesInput::placeholder { color: var(--chalk-dim); }
+
+.chalk-btn {
+  align-self: flex-start;
+  background: transparent;
+  border: 2px solid var(--chalk-yellow);
+  color: var(--chalk-yellow);
+  font-family: 'Kalam', cursive;
+  font-size: 1rem;
+  padding: 8px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.chalk-btn:hover {
+  background: var(--chalk-yellow);
+  color: var(--board-green);
+}
+
+.status-text {
+  font-size: 0.85rem;
+  color: var(--chalk-blue);
+  margin-top: 10px;
+  min-height: 1.2em;
+}
+
+/* ---------- PDF upload section ---------- */
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--chalk-dim);
+  font-size: 0.8rem;
+  margin: 16px 0 12px;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px dashed rgba(243, 241, 231, 0.2);
+}
+
+.divider span {
+  padding: 0 10px;
+}
+
+.pdf-label {
+  font-size: 0.85rem;
+  color: var(--chalk-dim);
+  margin-bottom: 6px;
+}
+
+#pdfInput {
+  color: var(--chalk-dim);
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+
+#pdfInput::file-selector-button {
+  background: transparent;
+  border: 1px solid var(--chalk-blue);
+  color: var(--chalk-blue);
+  border-radius: 4px;
+  padding: 4px 10px;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+/* ---------- Chat panel ---------- */
+.chat-window {
+  flex: 1;
+  min-height: 220px;
+  max-height: 340px;
+  overflow-y: auto;
+  margin-bottom: 12px;
+  padding-right: 4px;
+}
+
+.chat-empty {
+  color: var(--chalk-dim);
+  font-size: 0.9rem;
+  font-style: italic;
+  padding: 10px 0;
+}
+
+.qa-pair {
+  margin-bottom: 16px;
+}
+
+.question-bubble {
+  color: var(--chalk-blue);
+  font-weight: 600;
+  font-size: 0.92rem;
+  margin-bottom: 6px;
+}
+
+.question-bubble::before { content: "Q: "; color: var(--chalk-dim); }
+
+.answer-card {
+  background: rgba(243, 241, 231, 0.06);
+  border-left: 3px solid var(--chalk-coral);
+  border-radius: 4px;
+  padding: 10px 12px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.answer-card .source-label {
+  display: block;
+  margin-top: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--chalk-dim);
+}
+
+.ask-form {
+  display: flex;
+  gap: 10px;
+}
+
+#questionInput {
+  flex: 1;
+  background: rgba(243, 241, 231, 0.05);
+  border: 1px solid rgba(243, 241, 231, 0.2);
+  border-radius: 6px;
+  color: var(--chalk-white);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  padding: 10px 12px;
+}
+
+#questionInput::placeholder { color: var(--chalk-dim); }
+
+/* ---------- Footer ---------- */
+.footer {
+  margin-top: 30px;
+  color: var(--chalk-dim);
+  font-size: 0.8rem;
+  text-align: center;
+}

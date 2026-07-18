@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Buddy — AI Study Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <header class="header">
+    <h1 class="chalk-title">Study Buddy<span class="chalk-underline"></span></h1>
+    <p class="subtitle">Paste your notes. Ask a question. Get pointed to the answer.</p>
+  </header>
+
+  <main class="board">
+
+    <!-- LEFT PANEL: document input -->
+    <section class="panel notes-panel">
+      <h2 class="panel-title">01 — Your Notes</h2>
+      <textarea id="notesInput" placeholder="Paste your study notes, textbook paragraph, or article here..."></textarea>
+      <button id="uploadBtn" class="chalk-btn">Save Notes</button>
+
+      <div class="divider"><span>or</span></div>
+
+      <label for="pdfInput" class="pdf-label">Upload a PDF instead</label>
+      <input type="file" id="pdfInput" accept="application/pdf">
+      <button id="uploadPdfBtn" class="chalk-btn">Upload PDF</button>
+
+      <p id="uploadStatus" class="status-text"></p>
+    </section>
+
+    <!-- RIGHT PANEL: question and answer -->
+    <section class="panel chat-panel">
+      <h2 class="panel-title">02 — Ask a Question</h2>
+
+      <div id="chatWindow" class="chat-window">
+        <div class="chat-empty">Your questions and answers will show up here.</div>
+      </div>
+
+      <form id="askForm" class="ask-form">
+        <input type="text" id="questionInput" placeholder="e.g. What is photosynthesis?" autocomplete="off">
+        <button type="submit" class="chalk-btn">Ask</button>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="footer">Powered by sentence-transformer embeddings, FAISS vector search, and Gemini 2.5.</footer>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
